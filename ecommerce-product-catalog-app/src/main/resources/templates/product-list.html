@@ -1,0 +1,34 @@
+<!-- src/main/resources/templates/product-list.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Product Catalog</title>
+</head>
+<body>
+<h2>All Products</h2>
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Price ($)</th>
+            <th>Stock</th>
+            <th>Category</th>
+            <th>Created</th>
+            <th>View</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="product : ${products}">
+            <td th:text="${product.name}">Product Name</td>
+            <td th:text="${product.price}">Price</td>
+            <td th:text="${product.stockQuantity}">Stock</td>
+            <td th:text="${product.category}">Category</td>
+            <td th:text="${#temporals.format(product.createdAt, 'yyyy-MM-dd HH:mm')}">Created</td>
+            <td><a th:href="@{'/products/' + ${product.id}}">View</a></td>
+        </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
